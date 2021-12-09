@@ -1,6 +1,6 @@
 Stelios Papamichail csd4020
 
---- Kernel edits/additions ---
+## Kernel edits/additions
 
 The first thing I did was to define the syscall numbers for the two new system calls in the
 /arch/x86/include/asm/unistd_32.h file as well as update the total syscall count. Once that was done,
@@ -15,7 +15,7 @@ at the top of the struct's definition (around line 1200). From then on, I implem
 in the /kernel/set_period_params.c and /kernel/get_period_params.c files and edited the /kernel/Makefile
 in order to include these new syscalls in the kernel's compilation.
 
---- System call implementation details ---
+## System call implementation details
 
 The implementations are pretty straightforward. For the set_period_params, after printing the kernel
 message, I check if any of the given args is < 0 and/or if the period < exec_time and if so, I return
@@ -27,7 +27,7 @@ struct and then I check if the given address of the struct is accessible and in 
 it is not, I return EINVAL, otherwise I attempt to write at that memory location the given updated
 struct. If it succeeds, I return 0, otherwise EINVAL.
 
---- Test description ---
+## Test description
 
 I wrote a single test that uses wrapper functions to call the appropriate system calls. I added a
 prompt that allows us to select 3 possible tests that are described there so I'm going to avoid
